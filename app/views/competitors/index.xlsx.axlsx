@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Competitors #{DateTime.now.to_date}") do |sheet|
+	wb.styles do |style|
+  		sheet.add_row ["Name", "Last name","Identification","State","Town","Email","Habeas Data","Created At"]
+	end
+	@competitors.each do |competitor|
+    	sheet.add_row [competitor.name,competitor.last_name,competitor.identification,competitor.town.state.name,competitor.town.name,competitor.email,competitor.habeas_data ? "Si" : "No",competitor.created_at.strftime("%Y-%m-%d %I:%M:%S")]
+  	end
+end

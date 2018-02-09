@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @competitor.name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @competitor.last_name %>
+</p>
+
+<p>
+  <strong>Identification:</strong>
+  <%= @competitor.identification %>
+</p>
+
+<p>
+  <strong>Town:</strong>
+  <%= @competitor.town %>
+</p>
+
+<p>
+  <strong>Cellphone:</strong>
+  <%= @competitor.cellphone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @competitor.email %>
+</p>
+
+<p>
+  <strong>Habeas data:</strong>
+  <%= @competitor.habeas_data %>
+</p>
+
+<%= link_to 'Edit', edit_competitor_path(@competitor) %> |
+<%= link_to 'Back', competitors_path %>

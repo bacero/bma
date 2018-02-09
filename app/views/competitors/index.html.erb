@@ -1,0 +1,65 @@
+<div class="container ">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Participantes</h1>
+      <p id="notice"><%= notice %></p>
+      <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Ganador</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Identificacion</th>
+            <th>Ciudad</th>
+            <th>Departamento</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Habeas data</th>
+            <th>Inscripcion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @competitors.each do |competitor| %>
+            <tr>
+              <td class="text-center"><%= competitor.winners.present? ? "*" : " " %> </td>
+              <td><%= competitor.name %></td>
+              <td><%= competitor.last_name %></td>
+              <td><%= competitor.identification %></td>
+              <td><%= competitor.town.name %></td>
+              <td><%= competitor.town.state.name %></td>
+              <td><%= competitor.cellphone %></td>
+              <td><%= competitor.email %></td>
+              <td><%= competitor.habeas_data ? "O" : "X" %></td>
+              <td><%= competitor.created_at.strftime("%Y-%m-%d %I:%M:%S") %></td>
+              <td><%= link_to 'Show', competitor %></td>
+             
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-6 text-left">
+          <%= link_to 'Descargar como .xlsx', competitors_path(format: :xlsx),class:"btn btn-success" %>
+      </div>
+      <div class="col-md-6 text-right">
+        <% if Winner.winwin%>
+          <%= link_to "Generar Sorteo (Numero de Participantes: #{Winner.count_competitors})", winners_path, :method => :post,class:"btn btn-warning" %>
+        <% else %>
+          No se puede realizar Sorteo (Numero de Participantes: <%= Winner.count_competitors %>)
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

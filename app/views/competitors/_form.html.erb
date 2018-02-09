@@ -1,0 +1,56 @@
+<%= form_for(competitor) do |f| %>
+  <% if competitor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(competitor.errors.count, "error") %> prohibited this competitor from being saved:</h2>
+
+      <ul>
+      <% competitor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name,"Nombre" %>
+    <%= f.text_field :name,:class =>"form-control" ,:required => true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name,"Apellido" %>
+    <%= f.text_field :last_name,:class =>"form-control",:required => true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :identification,"Identificacion" %>
+    <%= f.text_field :identification,:class =>"form-control" ,:required => true %>
+  </div>
+  <div class="form-group">
+  <%= f.label :state_id, "Departamento" %>
+  <%= select_tag(:state_id,options_from_collection_for_select(State.all, 'id', 'name'),prompt: 'Seleccione Departamento',:required => true,:class =>"form-control")%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :town_id, "Ciudad o Municipio" %>
+    <%= f.collection_select :town_id, Town.where(id:competitor.town_id).limit(1) , :id, :name, {prompt: 'Seleccione Ciudad'}, {:disabled => true,:required => true,:class =>"form-control"}%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cellphone,"Celular" %>
+    <%= f.number_field :cellphone,:class =>"form-control",:required => true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email,"Email" %>
+    <%= f.email_field :email,:class =>"form-control",:required => true %>
+  </div>
+
+  <div class="form-check">
+    <%= f.check_box :habeas_data, :class => "form-check-input" %>
+    <%= f.label :habeas_data,:class =>"form-check-label" %>**
+  </div>
+
+  <div class="form-group text-center">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>

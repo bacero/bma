@@ -1,0 +1,33 @@
+<div class="container ">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Ganadores</h1>
+      <p id="notice"><%= notice %></p>
+      <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Identificacion</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @winners.each do |winner| %>
+            <tr>
+              <td><%= winner.competitor.name %></td>
+              <td><%= winner.competitor.last_name %></td>
+              <td><%= winner.competitor.identification %></td>
+              <td><%= winner.created_at.strftime("%Y-%m-%d %I:%M:%S") %></td>
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    
+  </div>
+</div>
